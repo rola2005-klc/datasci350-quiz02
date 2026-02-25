@@ -20,5 +20,8 @@ format:
     theme: cosmo
     toc: true
 
+execute:
+  kernel: base
+
 
 
