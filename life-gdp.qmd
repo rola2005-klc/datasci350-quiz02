@@ -1,34 +1,28 @@
-import pandas as pd
-import matplotlib.pyplot as plt
-import numpy as np
+---
+title: "Life Expectancy and GDP per Capita"
+---
 
-df = pd.read_csv("gapminder.csv").dropna(
-    subset=["gdp_per_capita", "life_expectancy", "continent"]
-)
+This page examines the relationship between life expectancy and GDP per capita across countries.
+
+```{python}
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+df = pd.read_csv("gapminder.csv").dropna(subset=["gdp_per_capita", "life_expectancy", "year"])
 df = df[df["gdp_per_capita"] > 0].copy()
 
-continents = sorted(df["continent"].unique())
-cmap = plt.get_cmap("tab10")
-color_map = {c: cmap(i % 10) for i, c in enumerate(continents)}
+x = df["gdp_per_capita"].astype(float).to_numpy()
+y = df["life_expectancy"].astype(float).to_numpy()
+t = df["year"].astype(int).to_numpy()
 
 plt.figure()
-
-for c in continents:
-    d = df[df["continent"] == c]
-    plt.scatter(
-        d["gdp_per_capita"],
-        d["life_expectancy"],
-        s=14,
-        alpha=0.4,
-        label=c,
-        c=[color_map[c]],
-        edgecolors="none",
-    )
-
+sc = plt.scatter(x, y, c=t, s=14, alpha=0.45)
 plt.xscale("log")
 plt.xlabel("GDP per Capita (log scale)")
 plt.ylabel("Life Expectancy")
-plt.title("Life Expectancy vs GDP per Capita (colored by continent)")
-plt.legend(title="Continent", frameon=False)
+plt.title("Life Expectancy vs GDP per Capita (colored by year)")
+plt.colorbar(sc, label="Year")
 plt.tight_layout()
 plt.show()
+```
