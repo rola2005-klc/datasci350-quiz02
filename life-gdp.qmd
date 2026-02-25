@@ -2,7 +2,7 @@
 title: "Life Expectancy and GDP per Capita"
 ---
 
-This page examines how life expectancy relates to GDP per capita across countries and over time (colored by year).
+This page examines the relationship between life expectancy and GDP per capita across countries.
 
 ```{python}
 import pandas as pd
