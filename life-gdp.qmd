@@ -1,0 +1,30 @@
+---
+title: "Life Expectancy and GDP per Capita"
+---
+
+This page examines how life expectancy changes with GDP per capita over time using the Gapminder dataset.
+
+```{python}
+import pandas as pd
+import plotly.express as px
+
+df = pd.read_csv("gapminder.csv")
+
+fig = px.scatter(
+    df,
+    x="gdp_per_capita",
+    y="life_expectancy",
+    animation_frame="year",
+    animation_group="country",
+    color="continent",
+    hover_name="country",
+    size="population_millions",
+    log_x=True,
+    labels={
+        "gdp_per_capita": "GDP per Capita (log scale)",
+        "life_expectancy": "Life Expectancy",
+        "population_millions": "Population (millions)"
+    },
+    title="Life Expectancy vs GDP per Capita Over Time"
+)
+fig.show()
