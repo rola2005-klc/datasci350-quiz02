@@ -18,7 +18,7 @@
     "href": "life-gdp.html",
     "title": "Life Expectancy and GDP per Capita",
     "section": "",
-    "text": "This page examines how life expectancy relates to GDP per capita.\nimport pandas as pd import matplotlib.pyplot as plt\ndf = pd.read_csv(“gapminder.csv”)\nplt.scatter(df[“gdp_per_capita”], df[“life_expectancy”]) plt.xscale(“log”) plt.xlabel(“GDP per Capita”) plt.ylabel(“Life Expectancy”) plt.title(“Life Expectancy vs GDP per Capita”) plt.show()"
+    "text": "This page examines how life expectancy relates to GDP per capita across countries.\n\nimport pandas as pd\nimport matplotlib.pyplot as plt\n\ndf = pd.read_csv(\"gapminder.csv\")\n\nplt.figure()\nplt.scatter(df[\"gdp_per_capita\"], df[\"life_expectancy\"], alpha=0.6)\nplt.xscale(\"log\")\nplt.xlabel(\"GDP per Capita (log scale)\")\nplt.ylabel(\"Life Expectancy\")\nplt.title(\"Life Expectancy vs GDP per Capita\")\nplt.tight_layout()\nplt.show()"
   },
   {
     "objectID": "country.html",
