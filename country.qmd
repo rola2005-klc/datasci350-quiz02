@@ -1,25 +1,41 @@
 ```{python}
+#| label: fig-country-trends
+#| fig-cap: "Trends in Life Expectancy, GDP, and Population"
+
 import pandas as pd
-import matplotlib.pyplot as plt
+import plotly.express as px
 
-df = pd.read_csv("gapminder.csv")
-country_name = "United States"
+# 1. Load the data
+df = pd.read_csv('gapminder.csv')
 
-c = df[df["country"] == country_name].sort_values("year")
+# 2. Filter for Botswana
+target_country = 'Botswana'
+country_df = df[df['country'] == target_country]
 
-# 标准化（z-score），避免尺度压缩
-c_norm = (c[["life_expectancy", "gdp_per_capita", "population_millions"]] - 
-          c[["life_expectancy", "gdp_per_capita", "population_millions"]].mean()) / \
-          c[["life_expectancy", "gdp_per_capita", "population_millions"]].std()
+# 3. a multi-line chart or a specific trend chart
+# plot Life Expectancy over the years
+fig = px.line(country_df, 
+              x="year", 
+              y="life_expectancy", 
+              title=f"Life Expectancy Trends in {target_country}",
+              markers=True,
+              labels={"year": "Year", "life_expectancy": "Life Expectancy (Years)"})
 
-plt.figure()
-plt.plot(c["year"], c_norm["life_expectancy"], marker="o", label="Life Expectancy")
-plt.plot(c["year"], c_norm["gdp_per_capita"], marker="o", label="GDP per Capita")
-plt.plot(c["year"], c_norm["population_millions"], marker="o", label="Population (millions)")
-plt.xlabel("Year")
-plt.ylabel("Standardized Value (z-score)")
-plt.title(f"{country_name}: Standardized Trends Over Time")
-plt.legend()
-plt.tight_layout()
-plt.show()
+fig.show()
+
+#GDP change
+fig_gdp = px.bar(country_df, 
+                 x="year", 
+                 y="gdp_per_capita", 
+                 title=f"GDP per Capita in {target_country} Over Time",
+                 labels={"gdp_per_capita": "GDP per Capita", "year": "Year"})
+fig_gdp.show()
+
+#population change
+fig_population = px.bar(country_df, 
+                 x="year", 
+                 y="population_millions", 
+                 title=f"Population in {target_country} Over Time",
+                 labels={"population": "Population", "year": "Year"})
+fig_population.show()
 ```
