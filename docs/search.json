@@ -44,8 +44,8 @@
   {
     "objectID": "life-population.html",
     "href": "life-population.html",
-    "title": "Life Expectancy and Population",
+    "title": "DATASCI 350 - Quiz 02",
     "section": "",
-    "text": "This page analyzes the relationship between life expectancy and population across countries.\n\nimport pandas as pd\nimport matplotlib.pyplot as plt\n\ndf = pd.read_csv(\"gapminder.csv\")\n\nplt.figure()\nplt.scatter(df[\"population_millions\"], df[\"life_expectancy\"], alpha=0.6)\nplt.xlabel(\"Population (millions)\")\nplt.ylabel(\"Life Expectancy\")\nplt.title(\"Life Expectancy vs Population\")\nplt.tight_layout()\nplt.show()"
+    "text": "import pandas as pd\nimport matplotlib.pyplot as plt\nimport numpy as np\n\ndf = pd.read_csv(\"gapminder.csv\")\n\nx = df[\"population_millions\"].astype(float)\ny = df[\"life_expectancy\"].astype(float)\n\nx = np.where(x &lt;= 0, np.nan, x)\n\nplt.figure()\nplt.scatter(x, y, alpha=0.5)\nplt.xscale(\"log\")\nplt.xlabel(\"Population (millions, log scale)\")\nplt.ylabel(\"Life Expectancy\")\nplt.title(\"Life Expectancy vs Population\")\nplt.tight_layout()\nplt.show()"
   }
 ]

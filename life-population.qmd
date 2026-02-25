@@ -1,18 +1,19 @@
----
-title: "Life Expectancy and Population"
----
-
-This page analyzes the relationship between life expectancy and population across countries.
-
 ```{python}
 import pandas as pd
 import matplotlib.pyplot as plt
+import numpy as np
 
 df = pd.read_csv("gapminder.csv")
 
+x = df["population_millions"].astype(float)
+y = df["life_expectancy"].astype(float)
+
+x = np.where(x <= 0, np.nan, x)
+
 plt.figure()
-plt.scatter(df["population_millions"], df["life_expectancy"], alpha=0.6)
-plt.xlabel("Population (millions)")
+plt.scatter(x, y, alpha=0.5)
+plt.xscale("log")
+plt.xlabel("Population (millions, log scale)")
 plt.ylabel("Life Expectancy")
 plt.title("Life Expectancy vs Population")
 plt.tight_layout()
