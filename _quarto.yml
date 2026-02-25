@@ -19,7 +19,8 @@ format:
   html:
     theme: cosmo
     toc: true
-
+    fig-format: png
+    
 execute:
   kernel: base
 
