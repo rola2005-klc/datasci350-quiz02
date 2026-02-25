@@ -3,12 +3,10 @@
 #| fig-cap: "Trends in Life Expectancy, GDP, and Population"
 
 import pandas as pd
-import plotly.express as px
-
 # 1. Load the data
 df = pd.read_csv('gapminder.csv')
 
-# 2. Filter for Botswana
+# 2. Filter for United State
 target_country = 'Botswana'
 country_df = df[df['country'] == target_country]
 
