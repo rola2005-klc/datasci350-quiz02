@@ -27,4 +27,4 @@ fig = px.scatter(
     },
     title="Life Expectancy vs GDP per Capita Over Time"
 )
-fig.show()
+fig

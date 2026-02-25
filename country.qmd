@@ -25,4 +25,4 @@ fig = px.line(
     },
     title=f"{country_name}: Life Expectancy, GDP per Capita, and Population Over Time"
 )
-fig.show()
+fig
